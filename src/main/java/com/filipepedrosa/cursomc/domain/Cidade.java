@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Cidade implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -20,7 +20,7 @@ public class Cidade implements Serializable{
 	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name="estado_id")
+	@JoinColumn(name="seq_estado")
 	private Estado estado;
 	
 	public Cidade () {
@@ -82,7 +82,11 @@ public class Cidade implements Serializable{
 			return false;
 		return true;
 	}
-	
-	
 
+	@Override
+	public String toString() {
+		return "Cidade [id=" + id + ", nome=" + nome + ", estado=" + estado + "]";
+	}
+	
+	
 }
