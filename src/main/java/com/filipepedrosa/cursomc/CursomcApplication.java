@@ -9,8 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.filipepedrosa.cursomc.domain.Categoria;
 import com.filipepedrosa.cursomc.domain.Cidade;
+import com.filipepedrosa.cursomc.domain.Cliente;
+import com.filipepedrosa.cursomc.domain.Endereco;
 import com.filipepedrosa.cursomc.domain.Estado;
 import com.filipepedrosa.cursomc.domain.Produto;
+import com.filipepedrosa.cursomc.domain.enums.TipoCliente;
 import com.filipepedrosa.cursomc.repositories.CategoriaRepository;
 import com.filipepedrosa.cursomc.repositories.CidadeRepository;
 import com.filipepedrosa.cursomc.repositories.EstadoRepository;
@@ -53,6 +56,11 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		estadoRepository.saveAll(Arrays.asList(e1, e2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente cli1 = new Cliente (null, "Maria Silva", "maria@gmail.com", "99999999999", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("33589858", "985693325"));
+		Endereco e1 = new Endereco(null, "Rua Flores", "144", "casa", "Santa Efigencia"
+				, "30640970", c1 , cli1);
 	}
 	
 	public void addCategoriasProdutos () {
@@ -72,6 +80,7 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+		
 	}
 
 }
