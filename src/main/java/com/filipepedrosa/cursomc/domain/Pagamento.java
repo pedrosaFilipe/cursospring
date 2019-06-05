@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import com.filipepedrosa.cursomc.domain.enums.EstadoPagamento;
 
@@ -19,5 +20,20 @@ public class Pagamento  implements Serializable{
 	private Integer id;
 	
 	private EstadoPagamento estado;
+	
+	@OneToOne
+	private Pedido pedido;
 
+	public Pagamento (){
+		
+	}
+
+	public Pagamento(Integer id, EstadoPagamento estado, Pedido pedido) {
+		super();
+		this.id = id;
+		this.estado = estado;
+		this.pedido = pedido;
+	}
+	
+	
 }
