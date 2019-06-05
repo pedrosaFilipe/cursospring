@@ -16,6 +16,8 @@ import com.filipepedrosa.cursomc.domain.Produto;
 import com.filipepedrosa.cursomc.domain.enums.TipoCliente;
 import com.filipepedrosa.cursomc.repositories.CategoriaRepository;
 import com.filipepedrosa.cursomc.repositories.CidadeRepository;
+import com.filipepedrosa.cursomc.repositories.ClienteRepository;
+import com.filipepedrosa.cursomc.repositories.EnderecoRepository;
 import com.filipepedrosa.cursomc.repositories.EstadoRepository;
 import com.filipepedrosa.cursomc.repositories.ProdutoRepository;
 
@@ -33,6 +35,12 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private EstadoRepository estadoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -59,8 +67,15 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		Cliente cli1 = new Cliente (null, "Maria Silva", "maria@gmail.com", "99999999999", TipoCliente.PESSOAFISICA);
 		cli1.getTelefones().addAll(Arrays.asList("33589858", "985693325"));
-		Endereco e1 = new Endereco(null, "Rua Flores", "144", "casa", "Santa Efigencia"
+		Endereco end1 = new Endereco(null, "Rua Flores", "144", "casa", "Santa Efigencia"
 				, "30640970", c1 , cli1);
+		Endereco end2 = new Endereco(null, "Av Brasil", "888", "sala 1400", "Funcionarios"
+				, "30640970", c2 , cli1);
+		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2));
+		
 	}
 	
 	public void addCategoriasProdutos () {
